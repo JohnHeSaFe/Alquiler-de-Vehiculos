@@ -4,6 +4,7 @@
  */
 package javaalquilerdevehiculos;
 
+
 /**
  *
  * @author henar
@@ -15,6 +16,9 @@ public class JavaAlquilerDeVehiculos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        InterfazDeUsuario iu = new InterfazDeUsuario();
+        
+        iu.empezar();
     }
     
 }
