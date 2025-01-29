@@ -24,4 +24,9 @@ public abstract class Vehiculo {
     }
     
     public abstract double calcularPrecioAlquiler(int dias);
+    
+    @Override
+    public String toString() {
+        return "Matricula: " + this.matricula + "\n" + "Color: " + this.color + "\n" + "Fabricante: " + this.fabricante;
+    }
 }

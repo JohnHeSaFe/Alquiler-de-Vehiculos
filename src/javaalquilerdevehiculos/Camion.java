@@ -20,4 +20,9 @@ public class Camion extends Vehiculo{
     public double calcularPrecioAlquiler(int dias) {
         return calcularPrecioBase(dias) + 20 * pma;
     }  
+    
+    @Override
+    public String toString() {
+        return "Tipo: Camion \n" + super.toString() + "\nPMA: " + this.pma + " toneladas";
+    }
 }

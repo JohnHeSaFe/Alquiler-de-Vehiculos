@@ -21,4 +21,8 @@ public class Moto extends Vehiculo{
         return calcularPrecioBase(dias) + cilindrada * 5 / 100;
     }
     
+    @Override
+    public String toString() {
+        return "Tipo: Moto \n" + super.toString() + "\nCilindrada: " + this.cilindrada + " cc";
+    }
 }

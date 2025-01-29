@@ -9,16 +9,20 @@ package javaalquilerdevehiculos;
  * @author henar
  */
 public class Bicicleta extends Vehiculo{
-    boolean esElectrica;
+    boolean isElectrica;
     
-    public Bicicleta(String matricula, String color, String fabricante, boolean esElectrica) {
+    public Bicicleta(String matricula, String color, String fabricante, boolean isElectrica) {
         super(matricula, color, fabricante);
-        this.esElectrica = esElectrica;
+        this. isElectrica = isElectrica;
     }
 
     @Override
     public double calcularPrecioAlquiler(int dias) {
-        return calcularPrecioBase(dias) + (esElectrica ? 15 : 10);
+        return calcularPrecioBase(dias) +  (this.isElectrica ? 15 : 10);
     }
     
+    @Override
+    public String toString() {
+        return "Tipo: Camion \n" + super.toString() + "\n¿Es electrica?: " + (this.isElectrica ? "si" : "no");
+    }
 }

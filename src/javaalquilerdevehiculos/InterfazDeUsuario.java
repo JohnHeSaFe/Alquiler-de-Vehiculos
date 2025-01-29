@@ -74,6 +74,7 @@ public class InterfazDeUsuario {
             case "coche" -> {
                 System.out.print("Introduce plazas: ");
                 int plazas = scanner.nextInt();
+                scanner.nextLine();
                 
                 flota.add(new Coche(matricula, color, fabricante, plazas));
                 System.out.println("Coche añadido");
@@ -82,6 +83,7 @@ public class InterfazDeUsuario {
             case "moto" -> {
                 System.out.print("Introduce cilindrada: ");
                 int cilindrada = scanner.nextInt();
+                scanner.nextLine();
                 
                 flota.add(new Moto(matricula, color, fabricante, cilindrada));
                 System.out.println("Moto añadida");
@@ -90,6 +92,7 @@ public class InterfazDeUsuario {
             case "camion" -> {
                 System.out.print("Introduce PMA: ");
                 int pma = scanner.nextInt();
+                scanner.nextLine();
                 
                 flota.add(new Camion(matricula, color, fabricante, pma));
                 System.out.println("Camión añadido");
@@ -121,31 +124,22 @@ public class InterfazDeUsuario {
             System.out.println("4) Bicicleta");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
+            scanner.nextLine();
 
             switch(opcion) {
-                case 1 -> {
-                    return "coche";
-                }
-
-                case 2 -> {
-                    return "moto";
-                }
-
-                case 3 -> {
-                    return "camion";
-                }
-
-                case 4 -> {
-                    return "bicicleta";
-                }
-
-                default -> System.out.println("Opcion no correcta");
+            case 1 -> { return "coche"; }
+            case 2 -> { return "moto"; }
+            case 3 -> { return "camion"; }
+            case 4 -> { return "bicicleta"; }
+            default -> System.out.println("Opción no correcta");
             }
         }
     }
     
     public void mostrarFlota(){
-
+        for (Object vehiculo: flota) {
+            System.out.println(vehiculo + "\n");
+        }
     }
 
     public void alquilarVehiculo(){

@@ -21,4 +21,8 @@ public class Coche extends Vehiculo{
         return calcularPrecioBase(dias) + 1.5 * plazas * dias;
     }
     
+    @Override
+    public String toString() {
+        return "Tipo: Coche \n" + super.toString() + "\nPlazas: " + this.plazas + " plazas";
+    }
 }
