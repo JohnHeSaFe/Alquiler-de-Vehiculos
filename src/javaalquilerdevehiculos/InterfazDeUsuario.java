@@ -23,13 +23,11 @@ public class InterfazDeUsuario {
     public void empezar() {
         System.out.println("=====================");
         System.out.println("Alquiler de Vehiculos");
-        System.out.println("=====================");
-        System.out.println("\n");
+        System.out.println("=====================\n");
 
         int opcion;
         while (true) {
-            System.out.println("\n");
-            System.out.println("===========================");
+            System.out.println("\n===========================");
             System.out.println("Menu principal Alquiler de Vehiculos");
             System.out.println("===========================");
             System.out.println("1) Nuevo vehículo");
@@ -38,7 +36,7 @@ public class InterfazDeUsuario {
             System.out.println("0) Salir programa");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
-            System.out.println("\n");
+            System.out.println();
             
             switch(opcion) {
                 case 0 -> {
@@ -49,14 +47,21 @@ public class InterfazDeUsuario {
                     
                 case 2 -> mostrarFlota();
                     
-                case 3 -> alquilarVehiculo();
+                case 3 -> {
+                    if (flota.isEmpty()) {
+                        System.out.println("No hay ningun vehiculo en la flota");
+                        continue;
+                    }
                     
-                default -> System.out.println("Opcion no correcta");
+                    alquilarVehiculo();
+                }
+                    
+                default -> System.out.println("Opcion no valida");
             }
         }
     }
     /**
-     * Pedir parámetros de vehiculo, tipo de vehiculo, parámetros de tipo de vehiculo, y añadir a la flota segun el tipo
+     * Añadir vehículo a la flota
      */
     public void nuevoVehiculo(){
         String tipoVehiculo = tipoVehiculo();
@@ -65,10 +70,10 @@ public class InterfazDeUsuario {
         String matricula = scanner.nextLine();
         
         System.out.print("Introduce color: ");
-        String color = scanner.nextLine();
+        String color = capitalizarPalabras(scanner.nextLine());
         
         System.out.print("Introduce fabricante: ");
-        String fabricante = scanner.nextLine();
+        String fabricante = capitalizarPalabras(scanner.nextLine());
         
         switch (tipoVehiculo) {
             case "coche" -> {
@@ -112,7 +117,7 @@ public class InterfazDeUsuario {
     }
 
     /**
-     * Interfaz de pedir tipo de vehiculo
+     * Pedir escoger tipo de vehiculo
      * 
      * @return 
      */
@@ -136,13 +141,52 @@ public class InterfazDeUsuario {
         }
     }
     
+    /**
+     * Mostrar todos los vehiculos
+     */
     public void mostrarFlota(){
-        for (Object vehiculo: flota) {
-            System.out.println(vehiculo + "\n");
+        for (int i = 0; i < flota.size(); i++) {
+            System.out.println((i + 1) + ")\n" + flota.get(i));
         }
     }
 
+    /**
+     * Mostrar precio de alquiler al escoger un vehiculo y especificar dias
+     */
     public void alquilarVehiculo(){
+        int opcion;
+        do {
+            mostrarFlota();
+            System.out.print("\nSeleccione un vehiculo: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("");
+        } while (opcion < 1 || opcion > flota.size());
+        
+        int dias;
+        do {
+            System.out.print("Introduce cantidad de dias: ");
+            dias = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("");
+        } while (dias < 1);
+        
+        System.out.println("Importe del alquiler: " + (double)flota.get(opcion - 1).calcularPrecioAlquiler(dias));
+    }
+    
+    /**
+     * Capitalizar strings (1ª letra mayúscula y las demás minúscula)
+     * @param input
+     * @return 
+     */
+    public static String capitalizarPalabras(String input) {
+        String[] palabras = input.split(" ");
+        
+        String output = "";
+        for (String palabra : palabras) {
+            output += palabra.substring(0, 1).toUpperCase() + palabra.substring(1).toLowerCase() + " ";
+        }
 
+        return output.trim();
     }
 }
